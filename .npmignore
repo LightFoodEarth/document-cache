@@ -1,1 +1,6 @@
-/src
+.DS_Store
+node_modules
+src
+test
+.eslintrc.js
+.babelrc
