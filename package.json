@@ -1,0 +1,40 @@
+{
+  "name": "@smontero/document-cache",
+  "version": "0.0.1",
+  "description": "DGraph cache layer for hypha documents",
+  "main": "dist/index.js",
+  "scripts": {
+    "build": "babel src -d dist",
+    "prepare": "npm run build",
+    "test": "jest --watch --runInBand"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/hypha-dao/document-cache.git"
+  },
+  "keywords": [
+    "hypha",
+    "document",
+    "cache"
+  ],
+  "author": "Sebastian Montero",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/hypha-dao/document-cache/issues"
+  },
+  "homepage": "https://github.com/hypha-dao/document-cache#readme",
+  "dependencies": {
+    "dgraph-js": "^20.3.0",
+    "grpc": "^1.24.3"
+  },
+  "devDependencies": {
+    "@types/jest": "^26.0.10",
+    "eslint": "^7.7.0",
+    "eslint-config-standard": "^14.1.1",
+    "eslint-plugin-import": "^2.22.0",
+    "eslint-plugin-node": "^11.1.0",
+    "eslint-plugin-promise": "^4.2.1",
+    "eslint-plugin-standard": "^4.0.1",
+    "jest": "^26.4.2"
+  }
+}
