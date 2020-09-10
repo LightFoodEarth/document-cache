@@ -8,7 +8,6 @@ let dgraph = null
 let document = null
 
 beforeAll(async () => {
-  
   dgraph = new DGraph({
   })
   await dgraph.dropAll()

@@ -23,8 +23,12 @@
   },
   "homepage": "https://github.com/hypha-dao/document-cache#readme",
   "dependencies": {
+    "@eosrio/hyperion-stream-client": "^0.4.0-beta.5",
+    "config": "^3.3.1",
     "dgraph-js": "^20.3.0",
-    "grpc": "^1.24.3"
+    "dotenv": "^8.2.0",
+    "grpc": "^1.24.3",
+    "node-fetch": "^2.6.1"
   },
   "devDependencies": {
     "@babel/cli": "^7.11.5",
