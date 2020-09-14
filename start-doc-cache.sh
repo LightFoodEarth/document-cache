@@ -15,7 +15,7 @@ elif [[ $2 != 'build' && $2 != 'image' ]]; then
 fi
 
 if [[ $2 = build ]]; then
-  env $(cat .env.$1 | grep "#" -v) docker-compose -p doc-cache-$1 up --build
+  env $(cat .env.$1 | grep "#" -v) docker-compose -p doc-cache-$1 up --build -d
 else
-  env $(cat .env.$1 | grep "#" -v) docker-compose -f docker-compose.yml -f docker-compose.prod.yml -p doc-cache-$1 up
+  env $(cat .env.$1 | grep "#" -v) docker-compose -f docker-compose.yml -f docker-compose.prod.yml -p doc-cache-$1 up -d
 fi
