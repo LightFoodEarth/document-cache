@@ -3,22 +3,31 @@ name: Hypha Document Cache
 on:
   push:
     branches:
-      - master
+    - dev
+    - master
 
 jobs:
   deploy:
     runs-on: ubuntu-latest
-    steps:
+    steps:      
+      - name: Set docker-image-name to testnet
+        if: endsWith(github.ref, '/dev')
+        run: |
+          echo "::set-env name=DOCKER_IMAGE_NAME::hypha-doc-cache-testnet"
+      - name: Set docker-image-name to mainnet
+        if: endsWith(github.ref, '/master')
+        run: |
+          echo "::set-env name=DOCKER_IMAGE_NAME::hypha-doc-cache-mainnet"
       - uses: actions/checkout@v1
       - name: Docker login
         run: docker login -u ${{ secrets.DOCKER_HUB_USER }} -p ${{ secrets.DOCKER_HUB_PASSWORD }}
       - name: Build
-        run: docker build -t hypha-doc-cache .
+        run: docker build -t $DOCKER_IMAGE_NAME .
       - name: Tags
         run: |
-          docker tag hypha-doc-cache ${{ secrets.DOCKER_HUB_USER }}/hypha-doc-cache:${{ github.sha }}
-          docker tag hypha-doc-cache ${{ secrets.DOCKER_HUB_USER }}/hypha-doc-cache:latest
+          docker tag $DOCKER_IMAGE_NAME ${{ secrets.DOCKER_HUB_USER }}/$DOCKER_IMAGE_NAME:${{ github.sha }}
+          docker tag $DOCKER_IMAGE_NAME ${{ secrets.DOCKER_HUB_USER }}/$DOCKER_IMAGE_NAME:latest
       - name: Push
         run: |
-          docker push ${{ secrets.DOCKER_HUB_USER }}/hypha-doc-cache:${{ github.sha }}
-          docker push ${{ secrets.DOCKER_HUB_USER }}/hypha-doc-cache:latest
+          docker push ${{ secrets.DOCKER_HUB_USER }}/$DOCKER_IMAGE_NAME:${{ github.sha }}
+          docker push ${{ secrets.DOCKER_HUB_USER }}/$DOCKER_IMAGE_NAME:latest
