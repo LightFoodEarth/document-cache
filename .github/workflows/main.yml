@@ -16,9 +16,9 @@ jobs:
         run: docker build -t hypha-doc-cache .
       - name: Tags
         run: |
-          docker tag hypha-doc-cache ${{ secrets.DOCKER_USER }}/hypha-doc-cache:${{ github.sha }}
-          docker tag hypha-doc-cache ${{ secrets.DOCKER_USER }}/hypha-doc-cache:latest
+          docker tag hypha-doc-cache ${{ secrets.DOCKER_HUB_USER }}/hypha-doc-cache:${{ github.sha }}
+          docker tag hypha-doc-cache ${{ secrets.DOCKER_HUB_USER }}/hypha-doc-cache:latest
       - name: Push
         run: |
-          docker push ${{ secrets.DOCKER_USER }}/hypha-doc-cache:${{ github.sha }}
-          docker push ${{ secrets.DOCKER_USER }}/hypha-doc-cache:latest
+          docker push ${{ secrets.DOCKER_HUB_USER }}/hypha-doc-cache:${{ github.sha }}
+          docker push ${{ secrets.DOCKER_HUB_USER }}/hypha-doc-cache:latest
