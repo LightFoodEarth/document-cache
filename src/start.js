@@ -60,7 +60,7 @@ async function run () {
   }
 
   client.connect(() => {
-    console.log('connected!')
+    console.log('Connected to: ', EOS_ENDPOINT)
   })
 }
 
