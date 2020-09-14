@@ -8,20 +8,19 @@ on:
 jobs:
   deploy:
     runs-on: ubuntu-latest
-  
+    needs: ci
+
     steps:
       - uses: actions/checkout@v1
-      - name: Deploy to Docker Host
-        uses: wshihadeh/docker-deployment-action@v1
-        with:
-          remote_docker_host: ubuntu@ec2-3-236-210-156.compute-1.amazonaws.com
-          ssh_private_key: ${{ secrets.DOCKER_SSH_PRIVATE_KEY }}
-          ssh_public_key: ${{ secrets.DOCKER_SSH_PUBLIC_KEY }}
-          deployment_mode: docker-compose
-          copy_stack_file: true
-          deploy_path: ~/hypha-document-cache
-          stack_file_name: docker-compose.yaml
-          keep_files: 5
-          args: up -d
-          docker_prune: false
-          pull_images_first: true
+      - name: Docker login
+        run: docker login -u ${{ secrets.DOCKER_HUB_USER }} -p ${{ secrets.DOCKER_HUB_PASSWORD }}
+      - name: Build
+        run: docker build -t hypha-doc-cache .
+      - name: Tags
+        run: |
+          docker tag hypha-doc-cache ${{ secrets.DOCKER_USER }}/hypha-doc-cache:${{ github.sha }}
+          docker tag hypha-doc-cache ${{ secrets.DOCKER_USER }}/hypha-doc-cache:latest
+      - name: Push
+        run: |
+          docker push ${{ secrets.DOCKER_USER }}/hypha-doc-cache:${{ github.sha }}
+          docker push ${{ secrets.DOCKER_USER }}/hypha-doc-cache:latest
