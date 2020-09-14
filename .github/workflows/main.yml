@@ -19,7 +19,7 @@ jobs:
           ssh_public_key: ${{ secrets.DOCKER_SSH_PUBLIC_KEY }}
           deployment_mode: docker-compose
           copy_stack_file: true
-          deploy_path: /hypha-document-cache
+          deploy_path: ~/hypha-document-cache
           stack_file_name: docker-compose.yaml
           keep_files: 5
           args: up -d
