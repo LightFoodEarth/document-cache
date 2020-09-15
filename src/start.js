@@ -33,9 +33,9 @@ async function run () {
 
   client.onConnect = () => {
     client.streamDeltas({
-      code: 'docs.hypha',
+      code: 'dao.hypha',
       table: 'documents',
-      account: 'docs.hypha',
+      account: 'dao.hypha',
       scope: '',
       payer: '',
       start_from: startFrom,
