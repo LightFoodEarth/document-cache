@@ -20,7 +20,7 @@ const store = new Store({
 })
 
 async function run () {
-  console.log('Enviroment variables: ', JSON.stringify(process.env, null, 4))
+  console.log('Enviroment vars: ', JSON.stringify(process.env, null, 4))
   const addr = `${DGRAPH_ALPHA_HOST}:${DGRAPH_ALPHA_EXTERNAL_PORT}`
   const startFrom = store.get('lastProcessedBlock') || START_FROM
   console.log(`Connecting to DGraph on: ${addr}, Starting from: ${startFrom}`)
