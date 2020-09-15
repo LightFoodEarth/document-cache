@@ -14,8 +14,16 @@ elif [[ $2 != 'build' && $2 != 'image' ]]; then
     exit 1
 fi
 
+script_path="$(dirname $(realpath ${BASH_SOURCE[0]}))"
+
+pushd $script_path
+
+cp .env.$1 .env
+
 if [[ $2 = build ]]; then
-  env $(cat .env.$1 | grep "#" -v) docker-compose -p doc-cache-$1 up --build -d
+  docker-compose -p doc-cache-$1 up --build -d
 else
-  env $(cat .env.$1 | grep "#" -v) docker-compose -f docker-compose.yml -f docker-compose.prod.yml -p doc-cache-$1 up -d
+  docker-compose -f docker-compose.yml -f docker-compose.prod.yml -p doc-cache-$1 up -d
 fi
+
+popd
