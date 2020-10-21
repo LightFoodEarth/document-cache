@@ -28,6 +28,9 @@ services:
   doc-cache:
     command: node src/start.js
     environment:
+      - CONTRACT_NAME
+      - DOC_TABLE_NAME
+      - EDGE_TABLE_NAME
       - EOS_ENDPOINT
       - DGRAPH_ALPHA_HOST
       - DGRAPH_ALPHA_EXTERNAL_PORT

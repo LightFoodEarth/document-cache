@@ -6,6 +6,9 @@ const { Document } = require('./model')
 const { DGraph } = require('./service')
 
 const {
+  CONTRACT_NAME,
+  DOC_TABLE_NAME,
+  EDGE_TABLE_NAME,
   EOS_ENDPOINT,
   DGRAPH_ALPHA_HOST,
   DGRAPH_ALPHA_EXTERNAL_PORT,
@@ -27,15 +30,15 @@ async function run () {
   const dgraph = new DGraph({ addr })
   const document = new Document(dgraph)
 
-  await document.setSchema()
+  await document.prepareSchema()
 
   const client = new HyperionSocketClient(EOS_ENDPOINT, { async: true, fetch })
 
   client.onConnect = () => {
     client.streamDeltas({
-      code: 'docs.hypha',
-      table: 'documents',
-      account: 'docs.hypha',
+      code: CONTRACT_NAME,
+      table: '*',
+      account: CONTRACT_NAME,
       scope: '',
       payer: '',
       start_from: startFrom,
@@ -45,17 +48,23 @@ async function run () {
 
   // see 3 for handling data
   client.onData = async (delta, ack) => {
-    console.log('Delta: ', delta)
+    console.log(JSON.stringify(delta, null, 4))
     const {
       content: {
-        data: doc,
-        block_num: blockNum
+        data,
+        block_num: blockNum,
+        table,
+        present
       }
     } = delta
     lastProcessedBlock = blockNum
-    console.log(JSON.stringify(doc, null, 4))
-    if (doc) {
-      await document.store(doc)
+    // console.log(JSON.stringify(doc, null, 4))
+    if (data) {
+      if (table === DOC_TABLE_NAME) {
+        await document.processDocument(data)
+      } else if (table === EDGE_TABLE_NAME) {
+        await document.mutateEdge(data, !present)
+      }
       ack()
     }
   }
@@ -82,6 +91,7 @@ function failureHandler (error) {
 function terminateHandler () {
   console.log('Terminating doc listener...')
   saveLastProcessedBlock()
+  process.exit(1)
 }
 
 process.on('SIGINT', terminateHandler)

@@ -76,6 +76,7 @@ const certificatesRequest = `
 class Document {
   constructor (dgraph) {
     this.dgraph = dgraph
+    this.documentTypeFieldMap = null
   }
 
   async setSchema () {
@@ -83,7 +84,33 @@ class Document {
   }
 
   async schemaExists () {
-    return this.dgraph.typesExist(['Document', 'ContentGroup', 'Content', 'Certificate'])
+    return !await this.dgraph.typesExist(['Document', 'ContentGroup', 'Content', 'Certificate'])
+  }
+
+  async prepareSchema () {
+    if (!await this.schemaExists()) {
+      await this.setSchema()
+    }
+    this.documentTypeFieldMap = await this.getDocumentTypeFieldMap()
+  }
+
+  async updateDocumentTypeSchema (newField) {
+    if (!this.documentTypeFieldMap[newField]) {
+      const fields = Object.keys(this.documentTypeFieldMap).reduce((currentFields, field) => currentFields + `\n${field}`)
+
+      await this.dgraph.updateSchema(`
+        ${newField}: [uid] .
+        type Document{
+          ${fields}
+          ${newField}
+        }
+      `)
+      this.documentTypeFieldMap[newField] = { name: newField }
+    }
+  }
+
+  async getDocumentTypeFieldMap () {
+    return this.dgraph.getTypeFieldMap('Document')
   }
 
   async getByCreator (creator, opts) {
@@ -112,16 +139,29 @@ class Document {
 
   _configureRequest ({
     contentGroups = true,
-    certificates = true
+    certificates = true,
+    edges = []
   }) {
-    return `
-      {
+    const predicates = `
         uid,
         hash,
         created_date,
         ${contentGroups ? contentGroupsRequest : ''}
         ${certificates ? certificatesRequest : ''}
-      }
+    `
+    let edgeRequest = ''
+    edges.forEach(edge => {
+      edgeRequest += `
+        ${edge} {
+          ${predicates}  
+        }
+      `
+    })
+    return `
+    {
+      ${predicates},
+      ${edgeRequest}
+    }
     `
   }
 
@@ -141,10 +181,31 @@ class Document {
     return Util.toKeyValue(documents, 'hash', 'uid')
   }
 
-  async store (chainDoc) {
+  async processDocument (chainDoc) {
     const currentDoc = await this.getByHash(chainDoc.hash, { contentGroups: false })
     const dgraphDoc = await (currentDoc ? this._transformUpdate(chainDoc, currentDoc) : this._transformNew(chainDoc))
-    return dgraphDoc ? this.dgraph.updateData(dgraphDoc) : null
+    return dgraphDoc ? this.dgraph.update(dgraphDoc) : null
+  }
+
+  async mutateEdge (edge, deleteOp = false) {
+    const {
+      edge_name: edgeName,
+      from_node: fromNodeHash,
+      to_node: toNodeHash
+    } = edge
+    if (!deleteOp) {
+      await this.updateDocumentTypeSchema(edgeName)
+    }
+    const {
+      [fromNodeHash]: fromUID,
+      [toNodeHash]: toUID
+    } = await this.getHashUIDMap([fromNodeHash, toNodeHash])
+    if (fromUID && toUID) {
+      console.log(`${deleteOp ? 'Deleting' : 'Adding'} edge: ${edgeName} between from:<${fromUID}>${fromNodeHash} to: <${toUID}>${toNodeHash}`)
+      await this.dgraph.mutateEdge(fromUID, toUID, edgeName, deleteOp)
+    } else {
+      console.warn(`One or more of the docs in the relationship: ${edgeName} do not exist, fromDoc: ${fromNodeHash} exists: ${!!fromUID}, toDoc: ${toNodeHash} exists: ${!!toUID}`)
+    }
   }
 
   async _transformNew (chainDoc) {
