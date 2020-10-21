@@ -143,9 +143,9 @@ class Document {
     edges = []
   }) {
     const predicates = `
-        uid,
-        hash,
-        created_date,
+        uid
+        hash
+        created_date
         ${contentGroups ? contentGroupsRequest : ''}
         ${certificates ? certificatesRequest : ''}
     `
@@ -159,7 +159,7 @@ class Document {
     })
     return `
     {
-      ${predicates},
+      ${predicates}
       ${edgeRequest}
     }
     `
@@ -171,7 +171,7 @@ class Document {
       `
       {
         documents(func: eq(hash, [${docHash.join(',')}])){
-          uid,
+          uid
           hash
         }
       }
