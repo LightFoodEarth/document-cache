@@ -208,9 +208,7 @@ class Document {
       from_node: fromNodeHash,
       to_node: toNodeHash
     } = edge
-    if (!deleteOp) {
-      await this.updateDocumentTypeSchema(edgeName)
-    }
+    await this.updateDocumentTypeSchema(edgeName)
     const {
       [fromNodeHash]: fromUID,
       [toNodeHash]: toUID
