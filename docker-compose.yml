@@ -19,7 +19,7 @@ services:
       - ${DGRAPH_ALPHA_HTTP_PORT}:${DGRAPH_ALPHA_HTTP_PORT}
       - ${DGRAPH_ALPHA_EXTERNAL_PORT}:${DGRAPH_ALPHA_EXTERNAL_PORT}
     restart: on-failure
-    command: dgraph alpha --whitelist 172.17.0.0:172.90.0.0 --my=alpha:${DGRAPH_ALPHA_INTERNAL_PORT} --lru_mb=2048 --zero=zero:${DGRAPH_ZERO_INTERNAL_PORT} -o ${DGRAPH_PORT_OFFSET}
+    command: dgraph alpha --whitelist 172.17.0.0:172.90.0.0,192.168.0.0:192.169.0.0 --my=alpha:${DGRAPH_ALPHA_INTERNAL_PORT} --lru_mb=2048 --zero=zero:${DGRAPH_ZERO_INTERNAL_PORT} -o ${DGRAPH_PORT_OFFSET}
   ratel:
     image: dgraph/dgraph:latest
     ports:

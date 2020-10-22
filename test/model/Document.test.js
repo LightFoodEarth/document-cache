@@ -379,6 +379,12 @@ describe('Test processDeltas', () => {
     expect(member).toHaveLength(1)
     expect(member[0].hash).toBe('c0b0e48a9cd1b73ac924cf58a430abd5d3091ca7cbcda6caf5b7e7cebb379327')
 
+    let docs = await document.getByEdge('member')
+    expect(docs).not.toBeNull()
+    expect(docs).toBeInstanceOf(Array)
+    expect(docs).toHaveLength(1)
+    expect(docs[0].hash).toBe('c0b0e48a9cd1b73ac924cf58a430abd5d3091ca7cbcda6caf5b7e7cebb379327')
+
     await document.mutateEdge({
       edge_name: 'member',
       from_node: '7b5755ce318c42fc750a754b4734282d1fad08e52c0de04762cb5f159a253c24',
@@ -392,6 +398,12 @@ describe('Test processDeltas', () => {
     expect(member).toBeInstanceOf(Array)
     expect(member).toHaveLength(1)
     expect(member[0].hash).toBe('c0b0e48a9cd1b73ac924cf58a430abd5d3091ca7cbcda6caf5b7e7cebb379327')
+
+    docs = await document.getByEdge('member')
+    expect(docs).not.toBeNull()
+    expect(docs).toBeInstanceOf(Array)
+    expect(docs).toHaveLength(1)
+    expect(docs[0].hash).toBe('c0b0e48a9cd1b73ac924cf58a430abd5d3091ca7cbcda6caf5b7e7cebb379327')
 
     await document.mutateEdge({
       edge_name: 'member',
@@ -409,6 +421,14 @@ describe('Test processDeltas', () => {
       new Set(['c0b0e48a9cd1b73ac924cf58a430abd5d3091ca7cbcda6caf5b7e7cebb379327',
         '8b5755ce318c42fc750a754b4734282d1fad08e52c0de04762cb5f159a253c24']))
 
+    docs = await document.getByEdge('member')
+    expect(docs).not.toBeNull()
+    expect(docs).toBeInstanceOf(Array)
+    expect(docs).toHaveLength(2)
+    expect(new Set([docs[0].hash, docs[1].hash])).toEqual(
+      new Set(['c0b0e48a9cd1b73ac924cf58a430abd5d3091ca7cbcda6caf5b7e7cebb379327',
+        '8b5755ce318c42fc750a754b4734282d1fad08e52c0de04762cb5f159a253c24']))
+
     await document.mutateEdge({
       edge_name: 'proposal',
       from_node: '7b5755ce318c42fc750a754b4734282d1fad08e52c0de04762cb5f159a253c24',
@@ -422,6 +442,33 @@ describe('Test processDeltas', () => {
     expect(proposal).toBeInstanceOf(Array)
     expect(proposal).toHaveLength(1)
     expect(proposal[0].hash).toBe('c0b0e48a9cd1b73ac924cf58a430abd5d3091ca7cbcda6caf5b7e7cebb379327')
+
+    docs = await document.getByEdge('proposal')
+    expect(docs).not.toBeNull()
+    expect(docs).toBeInstanceOf(Array)
+    expect(docs).toHaveLength(1)
+    expect(docs[0].hash).toBe('c0b0e48a9cd1b73ac924cf58a430abd5d3091ca7cbcda6caf5b7e7cebb379327')
+
+    await document.mutateEdge({
+      edge_name: 'proposal',
+      from_node: '8b5755ce318c42fc750a754b4734282d1fad08e52c0de04762cb5f159a253c24',
+      to_node: 'c0b0e48a9cd1b73ac924cf58a430abd5d3091ca7cbcda6caf5b7e7cebb379327'
+    })
+
+    doc = await document.getByHash('8b5755ce318c42fc750a754b4734282d1fad08e52c0de04762cb5f159a253c24', { edges: ['proposal'] });
+    ({
+      proposal
+    } = doc)
+    expect(proposal).not.toBeNull()
+    expect(proposal).toBeInstanceOf(Array)
+    expect(proposal).toHaveLength(1)
+    expect(proposal[0].hash).toBe('c0b0e48a9cd1b73ac924cf58a430abd5d3091ca7cbcda6caf5b7e7cebb379327')
+
+    docs = await document.getByEdge('proposal')
+    expect(docs).not.toBeNull()
+    expect(docs).toBeInstanceOf(Array)
+    expect(docs).toHaveLength(1)
+    expect(docs[0].hash).toBe('c0b0e48a9cd1b73ac924cf58a430abd5d3091ca7cbcda6caf5b7e7cebb379327')
 
     await document.mutateEdge({
       edge_name: 'member',

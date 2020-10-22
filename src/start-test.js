@@ -10,9 +10,9 @@ async function run () {
 
   client.onConnect = () => {
     client.streamDeltas({
-      code: 'proxycapusra',
+      code: 'dao.hypha',
       table: '*',
-      account: 'proxycapusra',
+      account: 'dao.hypha',
       scope: '',
       payer: '',
       start_from: '2020-09-15T00:00:00.000Z',
@@ -22,7 +22,15 @@ async function run () {
 
   // see 3 for handling data
   client.onData = async (delta, ack) => {
-    console.log(JSON.stringify(delta, null, 4))
+    const {
+      content: {
+        table
+      }
+    } = delta
+    if (table === 'documents' || table === 'edges') {
+      console.log(JSON.stringify(delta, null, 4))
+    }
+
     ack()
   }
 

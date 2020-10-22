@@ -65,8 +65,8 @@ async function run () {
       } else if (table === EDGE_TABLE_NAME) {
         await document.mutateEdge(data, !present)
       }
-      ack()
     }
+    ack()
   }
 
   client.connect(() => {

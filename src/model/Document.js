@@ -137,6 +137,21 @@ class Document {
     return documents.length ? documents[0] : null
   }
 
+  async getByEdge (edge, opts) {
+    const { documents } = await this.dgraph.query(
+      ` 
+        {
+          var(func: has(${edge})){
+            matched as ${edge}{}
+          }
+          documents(func: uid(matched))
+          ${this._configureRequest(opts || {})}
+        }
+      `
+    )
+    return documents
+  }
+
   _configureRequest ({
     contentGroups = true,
     certificates = true,
