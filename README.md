@@ -83,7 +83,7 @@ await document.mutateEdge({
 
 ```
 
-## Retrieve a documents by edge
+## Retrieve documents by edge
 
 ``` javascript
     dgraph = new DGraph({  })
