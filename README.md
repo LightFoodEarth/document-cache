@@ -30,6 +30,135 @@ http://localhost:8000/?latest#
   }
 }
 ```
+### Get all members
+```
+{
+  var(func: has(member)){
+   members as member{
+  	}
+  }
+  members(func: uid(members)){
+    hash
+    creator
+    created_date
+    content_groups{
+      expand(_all_){
+        expand(_all_)
+      }
+    }
+    certificates{
+      expand(_all_){
+        expand(_all_)
+      }
+    }
+  }
+}
+```
+
+### Get all proposals
+```
+{
+  var(func: has(proposal)){
+   proposals as proposal{
+  	}
+  }
+  proposals(func: uid(proposals)){
+    hash
+    creator
+    created_date
+    content_groups{
+      expand(_all_){
+        expand(_all_)
+      }
+    }
+    certificates{
+      expand(_all_){
+        expand(_all_)
+      }
+    }
+  }
+}
+```
+### Get specific proposal
+```
+query proposal($hash:string){
+  proposal(func: eq(hash, $hash)) {
+    hash
+    creator
+    created_date
+    content_groups{
+      expand(_all_){
+        expand(_all_)
+      }
+    }
+    certificates{
+      expand(_all_){
+        expand(_all_)
+      }
+    }
+    ownedby{
+      hash
+    	creator
+    	created_date
+    	content_groups{
+      	expand(_all_){
+        	expand(_all_)
+      	}
+    	}
+    	certificates{
+      	expand(_all_){
+        	expand(_all_)
+      	}
+    	}
+    }
+  }
+}
+```
+### Get specific member
+```
+query member($hash:string){
+  member(func: eq(hash, $hash)) {
+    hash
+    creator
+    created_date
+    content_groups{
+      expand(_all_){
+        expand(_all_)
+      }
+    }
+    memberof{
+      hash
+    	creator
+    	created_date
+    	content_groups{
+      	expand(_all_){
+        	expand(_all_)
+      	}
+    	}
+    	certificates{
+      	expand(_all_){
+        	expand(_all_)
+      	}
+    	}
+    }
+    owns{
+      hash
+    	creator
+    	created_date
+    	content_groups{
+      	expand(_all_){
+        	expand(_all_)
+      	}
+    	}
+    	certificates{
+      	expand(_all_){
+        	expand(_all_)
+      	}
+    	}
+    }
+  }
+}
+```
 
 # Usage
 ## Store a document in DGraph
