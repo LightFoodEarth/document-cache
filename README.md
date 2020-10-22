@@ -36,7 +36,7 @@ http://localhost:8000/?latest#
 NOTE: Documents will be loaded into DGraph from the blockchain->DGraph loader. 
 
 ``` javascript
-await document.store(
+await document.processDocument(
 {
     id: 9,
     hash: '7b5755ce318c42fc750a754b4734282d1fad08e52c0de04762cb5f159a253c24',
@@ -63,6 +63,15 @@ await document.store(
     }
 )
 ```
+## Update document edge in dgraph
+``` javascript
+await document.mutateEdge({
+  "id": "2904366775",
+  "from_node": "71836B83D367AB992B58D3704EFD7E9D4D36B28E90BD89ECEE82415F7CA34528",
+  "to_node": "9EA1A14EB173F8D48B3663BACA0DA008C7552AC3203A932574A0B92A95C1F148",
+  "edge_name": "owns",
+  "created_date": "2020-10-22T19:33:37.000"
+})
 
 ## Retrieve a document by hash
 
@@ -72,5 +81,13 @@ await document.store(
     document = new Document(dgraph)
     let doc = await document.getByHash('7b5755ce318c42fc750a754b4734282d1fad08e52c0de04762cb5f159a253c24')
 
+```
+
+## Retrieve a documents by edge
+
+``` javascript
+    dgraph = new DGraph({  })
+    document = new Document(dgraph)
+    let docs = await document.getByEdge('member')
 ```
 
