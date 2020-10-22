@@ -15,7 +15,7 @@ async function run () {
       account: 'dao.hypha',
       scope: '',
       payer: '',
-      start_from: '2020-09-15T00:00:00.000Z',
+      start_from: '2020-10-22T00:00:00.000Z',
       read_until: 0
     })
   }
