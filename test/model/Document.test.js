@@ -67,7 +67,7 @@ describe('Test processDeltas', () => {
     await document.prepareSchema()
     const exists = await document.schemaExists()
     expect(exists).toBe(true)
-    await document.processDocument(
+    await document.mutateDocument(
       {
         id: 9,
         hash: '7b5755ce318c42fc750a754b4734282d1fad08e52c0de04762cb5f159a253c24',
@@ -99,11 +99,11 @@ describe('Test processDeltas', () => {
     expect(documents).toBeInstanceOf(Array)
     expect(documents).toHaveLength(1)
 
-    const hashUIDMap = await document.getHashUIDMap('7b5755ce318c42fc750a754b4734282d1fad08e52c0de04762cb5f159a253c24')
+    let hashUIDMap = await document.getHashUIDMap('7b5755ce318c42fc750a754b4734282d1fad08e52c0de04762cb5f159a253c24')
 
     expect(hashUIDMap['7b5755ce318c42fc750a754b4734282d1fad08e52c0de04762cb5f159a253c24']).not.toBeNull()
 
-    await document.processDocument(
+    await document.mutateDocument(
       {
         id: 10,
         hash: 'c0b0e48a9cd1b73ac924cf58a430abd5d3091ca7cbcda6caf5b7e7cebb379327',
@@ -220,7 +220,7 @@ describe('Test processDeltas', () => {
     expect(certificates).toHaveLength(2)
     expect(certificates[1].certifier).toBe('maria')
     const originalCertificates = certificates
-    await document.processDocument(
+    await document.mutateDocument(
       {
         id: 10,
         hash: 'c0b0e48a9cd1b73ac924cf58a430abd5d3091ca7cbcda6caf5b7e7cebb379327',
@@ -338,7 +338,7 @@ describe('Test processDeltas', () => {
     expect(originalCertificates[0].uid).toBe(certificates[0].uid)
     expect(originalCertificates[1].uid).toBe(certificates[1].uid)
 
-    await document.processDocument(
+    await document.mutateDocument(
       {
         id: 15,
         hash: '8b5755ce318c42fc750a754b4734282d1fad08e52c0de04762cb5f159a253c24',
@@ -470,6 +470,9 @@ describe('Test processDeltas', () => {
     expect(docs).toHaveLength(1)
     expect(docs[0].hash).toBe('c0b0e48a9cd1b73ac924cf58a430abd5d3091ca7cbcda6caf5b7e7cebb379327')
 
+    /**
+     * Test edge deletion
+     */
     await document.mutateEdge({
       edge_name: 'member',
       from_node: '7b5755ce318c42fc750a754b4734282d1fad08e52c0de04762cb5f159a253c24',
@@ -505,6 +508,37 @@ describe('Test processDeltas', () => {
       proposal
     } = doc)
     expect(proposal).toBeUndefined()
+
+    /**
+     * Test document deletion
+     */
+    hashUIDMap = await document.getHashUIDMap('c0b0e48a9cd1b73ac924cf58a430abd5d3091ca7cbcda6caf5b7e7cebb379327')
+    const uid = Object.values(hashUIDMap)[0]
+    doc = await document.getByUID(uid)
+    expect(doc).not.toBeNull()
+    expect(doc.hash).toBe('c0b0e48a9cd1b73ac924cf58a430abd5d3091ca7cbcda6caf5b7e7cebb379327')
+
+    await document.mutateDocument({
+      hash: 'c0b0e48a9cd1b73ac924cf58a430abd5d3091ca7cbcda6caf5b7e7cebb379327'
+    }, true)
+
+    doc = await document.getByHash('c0b0e48a9cd1b73ac924cf58a430abd5d3091ca7cbcda6caf5b7e7cebb379327')
+    expect(doc).toBeNull()
+
+    doc = await document.getByUID(uid)
+    expect(doc).not.toBeNull()
+    expect(doc.hash).toBeUndefined()
+
+    await document.mutateDocument({
+      hash: '7b5755ce318c42fc750a754b4734282d1fad08e52c0de04762cb5f159a253c24'
+    }, true)
+
+    doc = await document.getByHash('7b5755ce318c42fc750a754b4734282d1fad08e52c0de04762cb5f159a253c24')
+    expect(doc).toBeNull()
+
+    doc = await document.getByHash('8b5755ce318c42fc750a754b4734282d1fad08e52c0de04762cb5f159a253c24')
+    expect(doc).not.toBeNull()
+    expect(doc.hash).toBe('8b5755ce318c42fc750a754b4734282d1fad08e52c0de04762cb5f159a253c24')
   })
 })
 

@@ -111,6 +111,10 @@ class DGraph {
     }
   }
 
+  async deleteNode (uid) {
+    return this.delete(`<${uid}> * * .`)
+  }
+
   async mutateEdge (uidFrom, uidTo, edgeName, deleteOp = false) {
     return this.mutate(this._getEdgeTriplet(uidFrom, uidTo, edgeName), deleteOp)
   }

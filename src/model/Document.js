@@ -137,6 +137,19 @@ class Document {
     return documents.length ? documents[0] : null
   }
 
+  async getByUID (uid, opts) {
+    const { documents } = await this.dgraph.query(
+      ` 
+        query documents($uid: string){
+          documents(func: uid($uid))
+            ${this._configureRequest(opts || {})}
+        }
+      `,
+      { $uid: uid }
+    )
+    return documents.length ? documents[0] : null
+  }
+
   async getByEdge (edge, opts) {
     const { documents } = await this.dgraph.query(
       ` 
@@ -196,10 +209,27 @@ class Document {
     return Util.toKeyValue(documents, 'hash', 'uid')
   }
 
-  async processDocument (chainDoc) {
+  async mutateDocument (chainDoc, deleteOp = false) {
+    return deleteOp ? this.deleteDocument(chainDoc) : this.storeDocument(chainDoc)
+  }
+
+  async storeDocument (chainDoc) {
     const currentDoc = await this.getByHash(chainDoc.hash, { contentGroups: false })
     const dgraphDoc = await (currentDoc ? this._transformUpdate(chainDoc, currentDoc) : this._transformNew(chainDoc))
     return dgraphDoc ? this.dgraph.update(dgraphDoc) : null
+  }
+
+  async deleteDocument (chainDoc) {
+    const {
+      hash
+    } = chainDoc
+    const {
+      [hash]: uid
+    } = await this.getHashUIDMap([hash])
+    if (uid) {
+      console.log(`Deleting Node: <${uid}>${hash}`)
+      await this.dgraph.deleteNode(uid)
+    }
   }
 
   async mutateEdge (edge, deleteOp = false) {

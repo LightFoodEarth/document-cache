@@ -61,7 +61,7 @@ async function run () {
     // console.log(JSON.stringify(doc, null, 4))
     if (data) {
       if (table === DOC_TABLE_NAME) {
-        await document.processDocument(data)
+        await document.mutateDocument(data, !present)
       } else if (table === EDGE_TABLE_NAME) {
         await document.mutateEdge(data, !present)
       }
