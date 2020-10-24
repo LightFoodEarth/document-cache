@@ -159,6 +159,36 @@ query member($hash:string){
   }
 }
 ```
+### Get proposals that have a specific label and value (ex. label=type, value=badge)
+```
+query proposals($label:string, $value:string){
+  var(func: has(proposal)){
+  	proposals as proposal @cascade{
+    	content_groups {
+      	contents  @filter(eq(label,$label) and eq(value, $value)){
+        	label
+        	value
+      	}
+    	}
+  	}
+  }
+  proposals(func: uid(proposals)){
+    hash
+    creator
+    created_date
+    content_groups{
+      expand(_all_){
+        expand(_all_)
+      }
+    }
+    certificates{
+      expand(_all_){
+        expand(_all_)
+      }
+    }
+  }
+}
+```
 
 # Usage
 ## Store a document in DGraph
