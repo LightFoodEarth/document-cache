@@ -62,12 +62,30 @@ describe('Test updateSchema', () => {
     `)
     const missingTypes = await dgraph.typesExist(['Document', 'ContentGroup', 'Content'])
     expect(missingTypes).toBeNull()
+    const fieldMap = await dgraph.getTypeFieldMap('Document')
+    expect(fieldMap).toEqual({
+      hash: {
+        name: 'hash'
+      },
+      created_date: {
+        name: 'created_date'
+      },
+      creator: {
+        name: 'creator'
+      },
+      content_groups: {
+        name: 'content_groups'
+      },
+      certificates: {
+        name: 'certificates'
+      }
+    })
   })
 })
 
-describe('Test updateData', () => {
-  test('updateData', async () => {
-    await dgraph.updateData([
+describe('Test update', () => {
+  test('update', async () => {
+    await dgraph.update([
       {
         'dgraph.type': 'Document',
         certificates: [
