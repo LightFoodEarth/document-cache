@@ -3,6 +3,7 @@ name: Hypha Document Cache
 on:
   push:
     branches:
+    - dev2
     - dev
     - master
 
@@ -13,11 +14,15 @@ jobs:
       - name: Set docker-image-name to testnet
         if: endsWith(github.ref, '/dev')
         run: |
-          echo "::set-env name=DOCKER_IMAGE_NAME::hypha-doc-cache-testnet"
+          echo "DOCKER_IMAGE_NAME=hypha-doc-cache-testnet" >> $GITHUB_ENV
+      - name: Set docker-image-name to testnet2
+        if: endsWith(github.ref, '/dev2')
+        run: |
+          echo "DOCKER_IMAGE_NAME=hypha-doc-cache-testnet2" >> $GITHUB_ENV
       - name: Set docker-image-name to mainnet
         if: endsWith(github.ref, '/master')
         run: |
-          echo "::set-env name=DOCKER_IMAGE_NAME::hypha-doc-cache-mainnet"
+          echo "DOCKER_IMAGE_NAME=hypha-doc-cache-mainnet" >> $GITHUB_ENV
       - uses: actions/checkout@v1
       - name: Docker login
         run: docker login -u ${{ secrets.DOCKER_HUB_USER }} -p ${{ secrets.DOCKER_HUB_PASSWORD }}

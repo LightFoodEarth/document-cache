@@ -1,12 +1,12 @@
 #!/usr/bin/env bash
 
-usage="./start-doc-cache [testnet|mainnet] [build|image]"
+usage="./start-doc-cache [testnet|testnet2|mainnet] [build|image]"
 if [ $# -ne 2 ]; then
     echo $usage
     exit 1
 fi
 
-if [[ $1 != 'testnet' && $1 != 'mainnet' ]]; then
+if [[ $1 != 'testnet' && $1 != 'testnet2' && $1 != 'mainnet' ]]; then
     echo $usage
     exit 1
 elif [[ $2 != 'build' && $2 != 'image' ]]; then
