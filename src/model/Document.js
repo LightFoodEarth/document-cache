@@ -216,7 +216,13 @@ class Document {
   async storeDocument (chainDoc) {
     const currentDoc = await this.getByHash(chainDoc.hash, { contentGroups: false })
     const dgraphDoc = await (currentDoc ? this._transformUpdate(chainDoc, currentDoc) : this._transformNew(chainDoc))
-    return dgraphDoc ? this.dgraph.update(dgraphDoc) : null
+    if (dgraphDoc) {
+      console.log(`${currentDoc ? 'Updating' : 'Creating'} doc: ${chainDoc.hash}`)
+      return this.dgraph.update(dgraphDoc)
+    } else {
+      console.log(`Invalid doc: ${chainDoc.hash}`)
+      return null
+    }
   }
 
   async deleteDocument (chainDoc) {

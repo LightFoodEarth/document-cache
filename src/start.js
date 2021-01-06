@@ -29,6 +29,9 @@ async function run () {
   console.log(`Connecting to DGraph on: ${addr}, Starting from: ${startFrom}`)
   const dgraph = new DGraph({ addr })
   const document = new Document(dgraph)
+  let docDeletes = []
+  let edgeCreates = []
+  let currentBlock = null
 
   await document.prepareSchema()
 
@@ -58,12 +61,33 @@ async function run () {
       }
     } = delta
     lastProcessedBlock = blockNum
+    if (!currentBlock || currentBlock !== blockNum) {
+      for (const docDelete of docDeletes) {
+        await document.mutateDocument(docDelete, true)
+      }
+      for (const edgeCreate of edgeCreates) {
+        await document.mutateEdge(edgeCreate, false)
+      }
+      docDeletes = []
+      edgeCreates = []
+      currentBlock = blockNum
+    }
     // console.log(JSON.stringify(doc, null, 4))
     if (data) {
       if (table === DOC_TABLE_NAME) {
-        await document.mutateDocument(data, !present)
+        if (present) {
+          await document.mutateDocument(data, false)
+        } else {
+          console.log('Queueing document delete')
+          docDeletes.push(data)
+        }
       } else if (table === EDGE_TABLE_NAME) {
-        await document.mutateEdge(data, !present)
+        if (present) {
+          console.log('Queueing edge creation')
+          edgeCreates.push(data)
+        } else {
+          await document.mutateEdge(data, true)
+        }
       }
     }
     ack()
