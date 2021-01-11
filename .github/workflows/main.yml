@@ -6,6 +6,7 @@ on:
     - dev2
     - dev
     - master
+    - feature/add-instrumentation
 
 jobs:
   deploy:
