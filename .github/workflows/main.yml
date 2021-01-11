@@ -14,9 +14,9 @@ jobs:
     steps:      
       - uses: actions/checkout@v1
       - name: Branch name
-        run: echo running on branch ${GITHUB_REF##*/}
+        run: echo running on branch ${GITHUB_REF##*/}                
       - name: Set docker-image-name        
-        run: echo "DOCKER_IMAGE_NAME=document-cache:${GITHUB_REF##*/}"
+        run: echo "::set-env name=DOCKER_IMAGE_NAME::document-cache:${GITHUB_REF##*/}"
       - name: Docker login
         run: docker login -u ${{ secrets.DOCKER_HUB_USER }} -p ${{ secrets.DOCKER_HUB_PASSWORD }}
       - name: Build
