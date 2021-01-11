@@ -14,13 +14,19 @@ const {
   DGRAPH_ALPHA_EXTERNAL_PORT,
   START_FROM,
   DATA_PATH,
-  STORE_NAME
+  STORE_NAME,
+  PROMETHEUS_PORT
 } = process.env
 
 let lastProcessedBlock = null
 const store = new Store({
   path: path.join(DATA_PATH, STORE_NAME)
 })
+
+const express = require('express')
+const prom_express_app = express()
+const prom_client = require('prom-client')
+const port = PROMETHEUS_PORT || 9090;
 
 async function run () {
   console.log('Enviroment vars: ', JSON.stringify(process.env, null, 4))
@@ -29,6 +35,7 @@ async function run () {
   console.log(`Connecting to DGraph on: ${addr}, Starting from: ${startFrom}`)
   const dgraph = new DGraph({ addr })
   const document = new Document(dgraph)
+  
   let docDeletes = []
   let edgeCreates = []
   let currentBlock = null
@@ -49,9 +56,7 @@ async function run () {
     })
   }
 
-  // see 3 for handling data
   client.onData = async (delta, ack) => {
-    console.log(JSON.stringify(delta, null, 4))
     const {
       content: {
         data,
@@ -61,31 +66,37 @@ async function run () {
       }
     } = delta
     lastProcessedBlock = blockNum
+
     if (!currentBlock || currentBlock !== blockNum) {
       for (const docDelete of docDeletes) {
+        mutateDocument.inc(); 
         await document.mutateDocument(docDelete, true)
       }
       for (const edgeCreate of edgeCreates) {
+        mutateEdge.inc(); 
         await document.mutateEdge(edgeCreate, false)
       }
       docDeletes = []
       edgeCreates = []
       currentBlock = blockNum
+      blockNumber.set(blockNum)
     }
-    // console.log(JSON.stringify(doc, null, 4))
+
     if (data) {
       if (table === DOC_TABLE_NAME) {
         if (present) {
+          mutateEdge.inc(); 
           await document.mutateDocument(data, false)
         } else {
-          console.log('Queueing document delete')
+          queueDocumentDeletion.inc()
           docDeletes.push(data)
         }
       } else if (table === EDGE_TABLE_NAME) {
         if (present) {
-          console.log('Queueing edge creation')
+          queueEdgeCreation.inc()
           edgeCreates.push(data)
         } else {
+          mutateEdge.inc()
           await document.mutateEdge(data, true)
         }
       }
@@ -112,9 +123,59 @@ function failureHandler (error) {
   process.exit(1)
 }
 
+// instrumentation 
+prom_client.collectDefaultMetrics({
+  labels: { APP: "document-cache" },
+});
+
+const mutateEdge = new prom_client.Counter({
+  name: 'hypha_graph_documentcache_mutatededges',
+  help: '# of edges integrated into the graph',
+});
+
+const mutateDocument = new prom_client.Counter({
+  name: 'hypha_graph_documentcache_mutateddocs',
+  help: '# of documents integrated into the graph',
+});
+
+const queueEdgeCreation = new prom_client.Counter({
+  name: 'hypha_graph_documentcache_queueedgecreate',
+  help: '# of edges queued for creation',
+});
+
+const queueDocumentDeletion = new prom_client.Counter({
+  name: 'hypha_graph_documentcache_queuedocdelete',
+  help: '# of documents queued for deletion',
+});
+
+const blockNumber = new prom_client.Gauge({ 
+  name: 'hypha_graph_documentcache_blocknum', 
+  help: 'block number' 
+});
+
+prom_express_app.get('/metrics', async (req, res) => {
+  res.set('Content-Type', prom_client.register.contentType);
+  res.end(await prom_client.register.metrics()); 
+});
+
+prom_express_app.use((err, req, res, next) => {
+  res.statusCode = 500
+  res.json({ error: err.message })
+  next()
+})
+
+const prom_server = prom_express_app.listen(port, () => {
+  console.log(`prometheus endpoint listening on port ${port}`)
+})
+
 function terminateHandler () {
   console.log('Terminating doc listener...')
   saveLastProcessedBlock()
+  prom_server.close((err) => {
+    if (err) {
+      console.error(err)
+    }
+  })
   process.exit(1)
 }
 
@@ -125,3 +186,4 @@ process.on('uncaughtException', failureHandler)
 process.on('unhandledRejection', failureHandler)
 
 run()
+
