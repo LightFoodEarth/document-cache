@@ -12,18 +12,21 @@ jobs:
   deploy:
     runs-on: ubuntu-latest
     steps:      
-      - uses: actions/checkout@v1
-      - name: Branch name
-        run: echo running on branch ${GITHUB_REF##*/}                   
+      - uses: actions/checkout@v2
+      - name: Set output
+        id: vars
+        run: echo ::set-output name=short_ref::${GITHUB_REF#refs/*/}
+      - name: Check output
+        run: echo ${{ steps.vars.outputs.short_ref }}
       - name: Docker login
         run: docker login -u ${{ secrets.DOCKER_HUB_USER }} -p ${{ secrets.DOCKER_HUB_PASSWORD }}
       - name: Build
-        run: docker build -t document-cache:${GITHUB_REF##*/} .
+        run: docker build -t document-cache-${{ steps.vars.outputs.short_ref }} .
       - name: Tags
         run: |
-          docker tag document-cache:${GITHUB_REF##*/} ${{ secrets.DOCKER_HUB_USER }}/document-cache:${GITHUB_REF##*/}:${{ github.sha }}
-          docker tag document-cache:${GITHUB_REF##*/} ${{ secrets.DOCKER_HUB_USER }}/document-cache:${GITHUB_REF##*/}:latest
+          docker tag document-cache-${{ steps.vars.outputs.short_ref }} ${{ secrets.DOCKER_HUB_USER }}/document-cache-${{ steps.vars.outputs.short_ref }}:${{ github.sha }}
+          docker tag document-cache-${{ steps.vars.outputs.short_ref }} ${{ secrets.DOCKER_HUB_USER }}/document-cache-${{ steps.vars.outputs.short_ref }}:latest
       - name: Push
         run: |
-          docker push ${{ secrets.DOCKER_HUB_USER }}/document-cache:${GITHUB_REF##*/}:${{ github.sha }}
-          docker push ${{ secrets.DOCKER_HUB_USER }}/document-cache:${GITHUB_REF##*/}:latest
+          # docker push ${{ secrets.DOCKER_HUB_USER }}/document-cache-${{ steps.vars.outputs.short_ref }}:${{ github.sha }}
+          docker push ${{ secrets.DOCKER_HUB_USER }}/document-cache-${{ steps.vars.outputs.short_ref }}:latest
