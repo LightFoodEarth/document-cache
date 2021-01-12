@@ -1,0 +1,1000 @@
+        "scope": "dao.hypha",
+        "table": "edges",
+        "primary_key": "2328360651",
+        "payer": "dao.hypha",
+        "@timestamp": "2021-01-08T15:28:46.500",
+        "present": true,
+        "block_num": 87433891,
+        "block_id": "053622a32ea53dda27367c26e0a1f3c712611265753d58688a5facf67525e744",
+        "data": {
+            "id": "2328360651",
+            "from_node_edge_name_index": "3999415858",
+            "from_node_to_node_index": "1216623245",
+            "to_node_edge_name_index": "384948904",
+            "from_node": "8D73CC585A3B9952FACE205DE13250565A48DEE68B942756B10495134FF32E23",
+            "to_node": "52A7FF82BD6F53B31285E97D6806D886EEFB650E79754784E9D923D3DF347C91",
+            "edge_name": "memberof",
+            "created_date": "2021-01-08T15:28:46.500",
+            "creator": "dao.hypha",
+            "contract": "dao.hypha"
+        }
+    },
+    "irreversible": false
+}
+Queueing edge creation
+{
+    "type": "delta",
+    "mode": "history",
+    "content": {
+        "code": "dao.hypha",
+        "scope": "dao.hypha",
+        "table": "documents",
+        "primary_key": "4953",
+        "payer": "dao.hypha",
+        "@timestamp": "2021-01-08T15:28:49.000",
+        "present": true,
+        "block_num": 87433896,
+        "block_id": "053622a833e3ef7cc099ded3cd03399a1146af20d8d377b580571ebb2de5c2c3",
+        "data": {
+            "id": "4953",
+            "hash": "F3A554B28F789296B904CE2F66F0031BCC8BC555C034044E35C8655040819096",
+            "creator": "dao.hypha",
+            "content_groups": [
+                [
+                    {
+                        "label": "content_group_label",
+                        "value": [
+                            "string",
+                            "details"
+                        ]
+                    },
+                    {
+                        "label": "member",
+                        "value": [
+                            "name",
+                            "mem3.hypha"
+                        ]
+                    }
+                ],
+                [
+                    {
+                        "label": "content_group_label",
+                        "value": [
+                            "string",
+                            "system"
+                        ]
+                    },
+                    {
+                        "label": "type",
+                        "value": [
+                            "name",
+                            "member"
+                        ]
+                    },
+                    {
+                        "label": "node_label",
+                        "value": [
+                            "string",
+                            "mem3.hypha"
+                        ]
+                    }
+                ]
+            ],
+            "certificates": [],
+            "created_date": "2021-01-08T15:28:49.000",
+            "contract": "dao.hypha"
+        }
+    },
+    "irreversible": false
+}
+Adding edge: member between from:<0xf832>52A7FF82BD6F53B31285E97D6806D886EEFB650E79754784E9D923D3DF347C91 to: <0x20eb4>8D73CC585A3B9952FACE205DE13250565A48DEE68B942756B10495134FF32E23
+Adding edge: memberof between from:<0x20eb4>8D73CC585A3B9952FACE205DE13250565A48DEE68B942756B10495134FF32E23 to: <0xf832>52A7FF82BD6F53B31285E97D6806D886EEFB650E79754784E9D923D3DF347C91
+Creating doc: F3A554B28F789296B904CE2F66F0031BCC8BC555C034044E35C8655040819096
+{
+    "type": "delta",
+    "mode": "history",
+    "content": {
+        "code": "dao.hypha",
+        "scope": "dao.hypha",
+        "table": "edges",
+        "primary_key": "1174091245",
+        "payer": "dao.hypha",
+        "@timestamp": "2021-01-08T15:28:49.000",
+        "present": true,
+        "block_num": 87433896,
+        "block_id": "053622a833e3ef7cc099ded3cd03399a1146af20d8d377b580571ebb2de5c2c3",
+        "data": {
+            "id": "1174091245",
+            "from_node_edge_name_index": "2332556100",
+            "from_node_to_node_index": "2060566457",
+            "to_node_edge_name_index": "722459890",
+            "from_node": "F3A554B28F789296B904CE2F66F0031BCC8BC555C034044E35C8655040819096",
+            "to_node": "52A7FF82BD6F53B31285E97D6806D886EEFB650E79754784E9D923D3DF347C91",
+            "edge_name": "applicantof",
+            "created_date": "2021-01-08T15:28:49.000",
+            "creator": "mem3.hypha",
+            "contract": "dao.hypha"
+        }
+    },
+    "irreversible": false
+}
+Queueing edge creation
+{
+    "type": "delta",
+    "mode": "history",
+    "content": {
+        "code": "dao.hypha",
+        "scope": "dao.hypha",
+        "table": "edges",
+        "primary_key": "1060880183",
+        "payer": "dao.hypha",
+        "@timestamp": "2021-01-08T15:28:49.000",
+        "present": true,
+        "block_num": 87433896,
+        "block_id": "053622a833e3ef7cc099ded3cd03399a1146af20d8d377b580571ebb2de5c2c3",
+        "data": {
+            "id": "1060880183",
+            "from_node_edge_name_index": "2702545146",
+            "from_node_to_node_index": "4082156931",
+            "to_node_edge_name_index": "2821747186",
+            "from_node": "52A7FF82BD6F53B31285E97D6806D886EEFB650E79754784E9D923D3DF347C91",
+            "to_node": "F3A554B28F789296B904CE2F66F0031BCC8BC555C034044E35C8655040819096",
+            "edge_name": "applicant",
+            "created_date": "2021-01-08T15:28:49.000",
+            "creator": "mem3.hypha",
+            "contract": "dao.hypha"
+        }
+    },
+    "irreversible": false
+}
+Queueing edge creation
+{
+    "type": "delta",
+    "mode": "history",
+    "content": {
+        "code": "dao.hypha",
+        "scope": "dao.hypha",
+        "table": "edges",
+        "primary_key": "1615404396",
+        "payer": "dao.hypha",
+        "@timestamp": "2021-01-08T15:28:51.000",
+        "present": true,
+        "block_num": 87433900,
+        "block_id": "053622aca411e85649a763c36a2dfe4b8f34a9e89339c9bbfd2e0209db5a8279",
+        "data": {
+            "id": "1615404396",
+            "from_node_edge_name_index": "4239658784",
+            "from_node_to_node_index": "4082156931",
+            "to_node_edge_name_index": "3414718939",
+            "from_node": "52A7FF82BD6F53B31285E97D6806D886EEFB650E79754784E9D923D3DF347C91",
+            "to_node": "F3A554B28F789296B904CE2F66F0031BCC8BC555C034044E35C8655040819096",
+            "edge_name": "member",
+            "created_date": "2021-01-08T15:28:51.000",
+            "creator": "dao.hypha",
+            "contract": "dao.hypha"
+        }
+    },
+    "irreversible": false
+}
+Adding edge: applicantof between from:<0x20eb9>F3A554B28F789296B904CE2F66F0031BCC8BC555C034044E35C8655040819096 to: <0xf832>52A7FF82BD6F53B31285E97D6806D886EEFB650E79754784E9D923D3DF347C91
+Adding edge: applicant between from:<0xf832>52A7FF82BD6F53B31285E97D6806D886EEFB650E79754784E9D923D3DF347C91 to: <0x20eb9>F3A554B28F789296B904CE2F66F0031BCC8BC555C034044E35C8655040819096
+Queueing edge creation
+{
+    "type": "delta",
+    "mode": "history",
+    "content": {
+        "code": "dao.hypha",
+        "scope": "dao.hypha",
+        "table": "edges",
+        "primary_key": "1060880183",
+        "payer": "dao.hypha",
+        "@timestamp": "2021-01-08T15:28:51.000",
+        "present": false,
+        "block_num": 87433900,
+        "block_id": "053622aca411e85649a763c36a2dfe4b8f34a9e89339c9bbfd2e0209db5a8279",
+        "data": {
+            "id": "1060880183",
+            "from_node_edge_name_index": "2702545146",
+            "from_node_to_node_index": "4082156931",
+            "to_node_edge_name_index": "2821747186",
+            "from_node": "52A7FF82BD6F53B31285E97D6806D886EEFB650E79754784E9D923D3DF347C91",
+            "to_node": "F3A554B28F789296B904CE2F66F0031BCC8BC555C034044E35C8655040819096",
+            "edge_name": "applicant",
+            "created_date": "2021-01-08T15:28:49.000",
+            "creator": "mem3.hypha",
+            "contract": "dao.hypha"
+        }
+    },
+    "irreversible": false
+}
+Deleting edge: applicant between from:<0xf832>52A7FF82BD6F53B31285E97D6806D886EEFB650E79754784E9D923D3DF347C91 to: <0x20eb9>F3A554B28F789296B904CE2F66F0031BCC8BC555C034044E35C8655040819096
+{
+    "type": "delta",
+    "mode": "history",
+    "content": {
+        "code": "dao.hypha",
+        "scope": "dao.hypha",
+        "table": "edges",
+        "primary_key": "1174091245",
+        "payer": "dao.hypha",
+        "@timestamp": "2021-01-08T15:28:51.000",
+        "present": false,
+        "block_num": 87433900,
+        "block_id": "053622aca411e85649a763c36a2dfe4b8f34a9e89339c9bbfd2e0209db5a8279",
+        "data": {
+            "id": "1174091245",
+            "from_node_edge_name_index": "2332556100",
+            "from_node_to_node_index": "2060566457",
+            "to_node_edge_name_index": "722459890",
+            "from_node": "F3A554B28F789296B904CE2F66F0031BCC8BC555C034044E35C8655040819096",
+            "to_node": "52A7FF82BD6F53B31285E97D6806D886EEFB650E79754784E9D923D3DF347C91",
+            "edge_name": "applicantof",
+            "created_date": "2021-01-08T15:28:49.000",
+            "creator": "mem3.hypha",
+            "contract": "dao.hypha"
+        }
+    },
+    "irreversible": false
+}
+Deleting edge: applicantof between from:<0x20eb9>F3A554B28F789296B904CE2F66F0031BCC8BC555C034044E35C8655040819096 to: <0xf832>52A7FF82BD6F53B31285E97D6806D886EEFB650E79754784E9D923D3DF347C91
+{
+    "type": "delta",
+    "mode": "history",
+    "content": {
+        "code": "dao.hypha",
+        "scope": "dao.hypha",
+        "table": "edges",
+        "primary_key": "2205425866",
+        "payer": "dao.hypha",
+        "@timestamp": "2021-01-08T15:28:51.000",
+        "present": true,
+        "block_num": 87433900,
+        "block_id": "053622aca411e85649a763c36a2dfe4b8f34a9e89339c9bbfd2e0209db5a8279",
+        "data": {
+            "id": "2205425866",
+            "from_node_edge_name_index": "87109193",
+            "from_node_to_node_index": "2060566457",
+            "to_node_edge_name_index": "384948904",
+            "from_node": "F3A554B28F789296B904CE2F66F0031BCC8BC555C034044E35C8655040819096",
+            "to_node": "52A7FF82BD6F53B31285E97D6806D886EEFB650E79754784E9D923D3DF347C91",
+            "edge_name": "memberof",
+            "created_date": "2021-01-08T15:28:51.000",
+            "creator": "dao.hypha",
+            "contract": "dao.hypha"
+        }
+    },
+    "irreversible": false
+}
+Queueing edge creation
+{
+    "type": "delta",
+    "mode": "history",
+    "content": {
+        "code": "dao.hypha",
+        "scope": "dao.hypha",
+        "table": "edges",
+        "primary_key": "3798009959",
+        "payer": "dao.hypha",
+        "@timestamp": "2021-01-08T15:28:53.500",
+        "present": true,
+        "block_num": 87433905,
+        "block_id": "053622b154aae24e987c37a4c4453d8d6f9a398b360b8efdc08f8234fca61afc",
+        "data": {
+            "id": "3798009959",
+            "from_node_edge_name_index": "1030169012",
+            "from_node_to_node_index": "4247746241",
+            "to_node_edge_name_index": "722459890",
+            "from_node": "3237B4980ED653E3B34FB5D80AD6AB63F7E5CDFE6286FE31D9CE1318D1C6EDBB",
+            "to_node": "52A7FF82BD6F53B31285E97D6806D886EEFB650E79754784E9D923D3DF347C91",
+            "edge_name": "applicantof",
+            "created_date": "2021-01-08T15:28:53.500",
+            "creator": "mem4.hypha",
+            "contract": "dao.hypha"
+        }
+    },
+    "irreversible": false
+}
+Adding edge: member between from:<0xf832>52A7FF82BD6F53B31285E97D6806D886EEFB650E79754784E9D923D3DF347C91 to: <0x20eb9>F3A554B28F789296B904CE2F66F0031BCC8BC555C034044E35C8655040819096
+Adding edge: memberof between from:<0x20eb9>F3A554B28F789296B904CE2F66F0031BCC8BC555C034044E35C8655040819096 to: <0xf832>52A7FF82BD6F53B31285E97D6806D886EEFB650E79754784E9D923D3DF347C91
+Queueing edge creation
+{
+    "type": "delta",
+    "mode": "history",
+    "content": {
+        "code": "dao.hypha",
+        "scope": "dao.hypha",
+        "table": "edges",
+        "primary_key": "4255508967",
+        "payer": "dao.hypha",
+        "@timestamp": "2021-01-08T15:28:53.500",
+        "present": true,
+        "block_num": 87433905,
+        "block_id": "053622b154aae24e987c37a4c4453d8d6f9a398b360b8efdc08f8234fca61afc",
+        "data": {
+            "id": "4255508967",
+            "from_node_edge_name_index": "2702545146",
+            "from_node_to_node_index": "4016923585",
+            "to_node_edge_name_index": "1971464054",
+            "from_node": "52A7FF82BD6F53B31285E97D6806D886EEFB650E79754784E9D923D3DF347C91",
+            "to_node": "3237B4980ED653E3B34FB5D80AD6AB63F7E5CDFE6286FE31D9CE1318D1C6EDBB",
+            "edge_name": "applicant",
+            "created_date": "2021-01-08T15:28:53.500",
+            "creator": "mem4.hypha",
+            "contract": "dao.hypha"
+        }
+    },
+    "irreversible": false
+}
+Queueing edge creation
+{
+    "type": "delta",
+    "mode": "history",
+    "content": {
+        "code": "dao.hypha",
+        "scope": "dao.hypha",
+        "table": "documents",
+        "primary_key": "4954",
+        "payer": "dao.hypha",
+        "@timestamp": "2021-01-08T15:28:53.500",
+        "present": true,
+        "block_num": 87433905,
+        "block_id": "053622b154aae24e987c37a4c4453d8d6f9a398b360b8efdc08f8234fca61afc",
+        "data": {
+            "id": "4954",
+            "hash": "3237B4980ED653E3B34FB5D80AD6AB63F7E5CDFE6286FE31D9CE1318D1C6EDBB",
+            "creator": "dao.hypha",
+            "content_groups": [
+                [
+                    {
+                        "label": "content_group_label",
+                        "value": [
+                            "string",
+                            "details"
+                        ]
+                    },
+                    {
+                        "label": "member",
+                        "value": [
+                            "name",
+                            "mem4.hypha"
+                        ]
+                    }
+                ],
+                [
+                    {
+                        "label": "content_group_label",
+                        "value": [
+                            "string",
+                            "system"
+                        ]
+                    },
+                    {
+                        "label": "type",
+                        "value": [
+                            "name",
+                            "member"
+                        ]
+                    },
+                    {
+                        "label": "node_label",
+                        "value": [
+                            "string",
+                            "mem4.hypha"
+                        ]
+                    }
+                ]
+            ],
+            "certificates": [],
+            "created_date": "2021-01-08T15:28:53.500",
+            "contract": "dao.hypha"
+        }
+    },
+    "irreversible": false
+}
+Creating doc: 3237B4980ED653E3B34FB5D80AD6AB63F7E5CDFE6286FE31D9CE1318D1C6EDBB
+{
+    "type": "delta",
+    "mode": "history",
+    "content": {
+        "code": "dao.hypha",
+        "scope": "dao.hypha",
+        "table": "edges",
+        "primary_key": "1728868297",
+        "payer": "dao.hypha",
+        "@timestamp": "2021-01-08T15:28:55.500",
+        "present": true,
+        "block_num": 87433909,
+        "block_id": "053622b5ec845885e7cfb1c83b441302756edf1770c0cbc6130e8d17c7f64b68",
+        "data": {
+            "id": "1728868297",
+            "from_node_edge_name_index": "3733009331",
+            "from_node_to_node_index": "4247746241",
+            "to_node_edge_name_index": "384948904",
+            "from_node": "3237B4980ED653E3B34FB5D80AD6AB63F7E5CDFE6286FE31D9CE1318D1C6EDBB",
+            "to_node": "52A7FF82BD6F53B31285E97D6806D886EEFB650E79754784E9D923D3DF347C91",
+            "edge_name": "memberof",
+            "created_date": "2021-01-08T15:28:55.500",
+            "creator": "dao.hypha",
+            "contract": "dao.hypha"
+        }
+    },
+    "irreversible": false
+}
+Adding edge: applicantof between from:<0x20ec2>3237B4980ED653E3B34FB5D80AD6AB63F7E5CDFE6286FE31D9CE1318D1C6EDBB to: <0xf832>52A7FF82BD6F53B31285E97D6806D886EEFB650E79754784E9D923D3DF347C91
+Adding edge: applicant between from:<0xf832>52A7FF82BD6F53B31285E97D6806D886EEFB650E79754784E9D923D3DF347C91 to: <0x20ec2>3237B4980ED653E3B34FB5D80AD6AB63F7E5CDFE6286FE31D9CE1318D1C6EDBB
+Queueing edge creation
+{
+    "type": "delta",
+    "mode": "history",
+    "content": {
+        "code": "dao.hypha",
+        "scope": "dao.hypha",
+        "table": "edges",
+        "primary_key": "3798009959",
+        "payer": "dao.hypha",
+        "@timestamp": "2021-01-08T15:28:55.500",
+        "present": false,
+        "block_num": 87433909,
+        "block_id": "053622b5ec845885e7cfb1c83b441302756edf1770c0cbc6130e8d17c7f64b68",
+        "data": {
+            "id": "3798009959",
+            "from_node_edge_name_index": "1030169012",
+            "from_node_to_node_index": "4247746241",
+            "to_node_edge_name_index": "722459890",
+            "from_node": "3237B4980ED653E3B34FB5D80AD6AB63F7E5CDFE6286FE31D9CE1318D1C6EDBB",
+            "to_node": "52A7FF82BD6F53B31285E97D6806D886EEFB650E79754784E9D923D3DF347C91",
+            "edge_name": "applicantof",
+            "created_date": "2021-01-08T15:28:53.500",
+            "creator": "mem4.hypha",
+            "contract": "dao.hypha"
+        }
+    },
+    "irreversible": false
+}
+Deleting edge: applicantof between from:<0x20ec2>3237B4980ED653E3B34FB5D80AD6AB63F7E5CDFE6286FE31D9CE1318D1C6EDBB to: <0xf832>52A7FF82BD6F53B31285E97D6806D886EEFB650E79754784E9D923D3DF347C91
+{
+    "type": "delta",
+    "mode": "history",
+    "content": {
+        "code": "dao.hypha",
+        "scope": "dao.hypha",
+        "table": "edges",
+        "primary_key": "4255508967",
+        "payer": "dao.hypha",
+        "@timestamp": "2021-01-08T15:28:55.500",
+        "present": false,
+        "block_num": 87433909,
+        "block_id": "053622b5ec845885e7cfb1c83b441302756edf1770c0cbc6130e8d17c7f64b68",
+        "data": {
+            "id": "4255508967",
+            "from_node_edge_name_index": "2702545146",
+            "from_node_to_node_index": "4016923585",
+            "to_node_edge_name_index": "1971464054",
+            "from_node": "52A7FF82BD6F53B31285E97D6806D886EEFB650E79754784E9D923D3DF347C91",
+            "to_node": "3237B4980ED653E3B34FB5D80AD6AB63F7E5CDFE6286FE31D9CE1318D1C6EDBB",
+            "edge_name": "applicant",
+            "created_date": "2021-01-08T15:28:53.500",
+            "creator": "mem4.hypha",
+            "contract": "dao.hypha"
+        }
+    },
+    "irreversible": false
+}
+Deleting edge: applicant between from:<0xf832>52A7FF82BD6F53B31285E97D6806D886EEFB650E79754784E9D923D3DF347C91 to: <0x20ec2>3237B4980ED653E3B34FB5D80AD6AB63F7E5CDFE6286FE31D9CE1318D1C6EDBB
+{
+    "type": "delta",
+    "mode": "history",
+    "content": {
+        "code": "dao.hypha",
+        "scope": "dao.hypha",
+        "table": "edges",
+        "primary_key": "1085669531",
+        "payer": "dao.hypha",
+        "@timestamp": "2021-01-08T15:28:55.500",
+        "present": true,
+        "block_num": 87433909,
+        "block_id": "053622b5ec845885e7cfb1c83b441302756edf1770c0cbc6130e8d17c7f64b68",
+        "data": {
+            "id": "1085669531",
+            "from_node_edge_name_index": "4239658784",
+            "from_node_to_node_index": "4016923585",
+            "to_node_edge_name_index": "4233144617",
+            "from_node": "52A7FF82BD6F53B31285E97D6806D886EEFB650E79754784E9D923D3DF347C91",
+            "to_node": "3237B4980ED653E3B34FB5D80AD6AB63F7E5CDFE6286FE31D9CE1318D1C6EDBB",
+            "edge_name": "member",
+            "created_date": "2021-01-08T15:28:55.500",
+            "creator": "dao.hypha",
+            "contract": "dao.hypha"
+        }
+    },
+    "irreversible": false
+}
+Queueing edge creation
+{
+    "type": "delta",
+    "mode": "history",
+    "content": {
+        "code": "dao.hypha",
+        "scope": "dao.hypha",
+        "table": "documents",
+        "primary_key": "4955",
+        "payer": "dao.hypha",
+        "@timestamp": "2021-01-08T15:28:58.500",
+        "present": true,
+        "block_num": 87433915,
+        "block_id": "053622bb492a35cbd9e21ab56439e56e7a6165255f1a8ef3ab96c9e551444022",
+        "data": {
+            "id": "4955",
+            "hash": "D66E7C0B1BCE8B23957A25BD1691BB387D70BB7C9E1A8694D4B7AE3BF6DBDCCE",
+            "creator": "dao.hypha",
+            "content_groups": [
+                [
+                    {
+                        "label": "content_group_label",
+                        "value": [
+                            "string",
+                            "details"
+                        ]
+                    },
+                    {
+                        "label": "member",
+                        "value": [
+                            "name",
+                            "mem5.hypha"
+                        ]
+                    }
+                ],
+                [
+                    {
+                        "label": "content_group_label",
+                        "value": [
+                            "string",
+                            "system"
+                        ]
+                    },
+                    {
+                        "label": "type",
+                        "value": [
+                            "name",
+                            "member"
+                        ]
+                    },
+                    {
+                        "label": "node_label",
+                        "value": [
+                            "string",
+                            "mem5.hypha"
+                        ]
+                    }
+                ]
+            ],
+            "certificates": [],
+            "created_date": "2021-01-08T15:28:58.500",
+            "contract": "dao.hypha"
+        }
+    },
+    "irreversible": false
+}
+Adding edge: memberof between from:<0x20ec2>3237B4980ED653E3B34FB5D80AD6AB63F7E5CDFE6286FE31D9CE1318D1C6EDBB to: <0xf832>52A7FF82BD6F53B31285E97D6806D886EEFB650E79754784E9D923D3DF347C91
+Adding edge: member between from:<0xf832>52A7FF82BD6F53B31285E97D6806D886EEFB650E79754784E9D923D3DF347C91 to: <0x20ec2>3237B4980ED653E3B34FB5D80AD6AB63F7E5CDFE6286FE31D9CE1318D1C6EDBB
+Creating doc: D66E7C0B1BCE8B23957A25BD1691BB387D70BB7C9E1A8694D4B7AE3BF6DBDCCE
+{
+    "type": "delta",
+    "mode": "history",
+    "content": {
+        "code": "dao.hypha",
+        "scope": "dao.hypha",
+        "table": "edges",
+        "primary_key": "1632970249",
+        "payer": "dao.hypha",
+        "@timestamp": "2021-01-08T15:28:58.500",
+        "present": true,
+        "block_num": 87433915,
+        "block_id": "053622bb492a35cbd9e21ab56439e56e7a6165255f1a8ef3ab96c9e551444022",
+        "data": {
+            "id": "1632970249",
+            "from_node_edge_name_index": "20052768",
+            "from_node_to_node_index": "281026500",
+            "to_node_edge_name_index": "722459890",
+            "from_node": "D66E7C0B1BCE8B23957A25BD1691BB387D70BB7C9E1A8694D4B7AE3BF6DBDCCE",
+            "to_node": "52A7FF82BD6F53B31285E97D6806D886EEFB650E79754784E9D923D3DF347C91",
+            "edge_name": "applicantof",
+            "created_date": "2021-01-08T15:28:58.500",
+            "creator": "mem5.hypha",
+            "contract": "dao.hypha"
+        }
+    },
+    "irreversible": false
+}
+Queueing edge creation
+{
+    "type": "delta",
+    "mode": "history",
+    "content": {
+        "code": "dao.hypha",
+        "scope": "dao.hypha",
+        "table": "edges",
+        "primary_key": "1986719737",
+        "payer": "dao.hypha",
+        "@timestamp": "2021-01-08T15:28:58.500",
+        "present": true,
+        "block_num": 87433915,
+        "block_id": "053622bb492a35cbd9e21ab56439e56e7a6165255f1a8ef3ab96c9e551444022",
+        "data": {
+            "id": "1986719737",
+            "from_node_edge_name_index": "2702545146",
+            "from_node_to_node_index": "3649393806",
+            "to_node_edge_name_index": "1090092226",
+            "from_node": "52A7FF82BD6F53B31285E97D6806D886EEFB650E79754784E9D923D3DF347C91",
+            "to_node": "D66E7C0B1BCE8B23957A25BD1691BB387D70BB7C9E1A8694D4B7AE3BF6DBDCCE",
+            "edge_name": "applicant",
+            "created_date": "2021-01-08T15:28:58.500",
+            "creator": "mem5.hypha",
+            "contract": "dao.hypha"
+        }
+    },
+    "irreversible": false
+}
+Queueing edge creation
+{
+    "type": "delta",
+    "mode": "history",
+    "content": {
+        "code": "dao.hypha",
+        "scope": "dao.hypha",
+        "table": "edges",
+        "primary_key": "1632970249",
+        "payer": "dao.hypha",
+        "@timestamp": "2021-01-08T15:29:00.000",
+        "present": false,
+        "block_num": 87433918,
+        "block_id": "053622be0c9889a6b2370021087d12c9938d3ec6a3a0c6bc21e2429fa42e2cd9",
+        "data": {
+            "id": "1632970249",
+            "from_node_edge_name_index": "20052768",
+            "from_node_to_node_index": "281026500",
+            "to_node_edge_name_index": "722459890",
+            "from_node": "D66E7C0B1BCE8B23957A25BD1691BB387D70BB7C9E1A8694D4B7AE3BF6DBDCCE",
+            "to_node": "52A7FF82BD6F53B31285E97D6806D886EEFB650E79754784E9D923D3DF347C91",
+            "edge_name": "applicantof",
+            "created_date": "2021-01-08T15:28:58.500",
+            "creator": "mem5.hypha",
+            "contract": "dao.hypha"
+        }
+    },
+    "irreversible": false
+}
+Adding edge: applicantof between from:<0x20ecd>D66E7C0B1BCE8B23957A25BD1691BB387D70BB7C9E1A8694D4B7AE3BF6DBDCCE to: <0xf832>52A7FF82BD6F53B31285E97D6806D886EEFB650E79754784E9D923D3DF347C91
+Adding edge: applicant between from:<0xf832>52A7FF82BD6F53B31285E97D6806D886EEFB650E79754784E9D923D3DF347C91 to: <0x20ecd>D66E7C0B1BCE8B23957A25BD1691BB387D70BB7C9E1A8694D4B7AE3BF6DBDCCE
+Deleting edge: applicantof between from:<0x20ecd>D66E7C0B1BCE8B23957A25BD1691BB387D70BB7C9E1A8694D4B7AE3BF6DBDCCE to: <0xf832>52A7FF82BD6F53B31285E97D6806D886EEFB650E79754784E9D923D3DF347C91
+{
+    "type": "delta",
+    "mode": "history",
+    "content": {
+        "code": "dao.hypha",
+        "scope": "dao.hypha",
+        "table": "edges",
+        "primary_key": "2919057184",
+        "payer": "dao.hypha",
+        "@timestamp": "2021-01-08T15:29:00.000",
+        "present": true,
+        "block_num": 87433918,
+        "block_id": "053622be0c9889a6b2370021087d12c9938d3ec6a3a0c6bc21e2429fa42e2cd9",
+        "data": {
+            "id": "2919057184",
+            "from_node_edge_name_index": "2627419141",
+            "from_node_to_node_index": "281026500",
+            "to_node_edge_name_index": "384948904",
+            "from_node": "D66E7C0B1BCE8B23957A25BD1691BB387D70BB7C9E1A8694D4B7AE3BF6DBDCCE",
+            "to_node": "52A7FF82BD6F53B31285E97D6806D886EEFB650E79754784E9D923D3DF347C91",
+            "edge_name": "memberof",
+            "created_date": "2021-01-08T15:29:00.000",
+            "creator": "dao.hypha",
+            "contract": "dao.hypha"
+        }
+    },
+    "irreversible": false
+}
+Queueing edge creation
+{
+    "type": "delta",
+    "mode": "history",
+    "content": {
+        "code": "dao.hypha",
+        "scope": "dao.hypha",
+        "table": "edges",
+        "primary_key": "4036528166",
+        "payer": "dao.hypha",
+        "@timestamp": "2021-01-08T15:29:00.000",
+        "present": true,
+        "block_num": 87433918,
+        "block_id": "053622be0c9889a6b2370021087d12c9938d3ec6a3a0c6bc21e2429fa42e2cd9",
+        "data": {
+            "id": "4036528166",
+            "from_node_edge_name_index": "4239658784",
+            "from_node_to_node_index": "3649393806",
+            "to_node_edge_name_index": "46955181",
+            "from_node": "52A7FF82BD6F53B31285E97D6806D886EEFB650E79754784E9D923D3DF347C91",
+            "to_node": "D66E7C0B1BCE8B23957A25BD1691BB387D70BB7C9E1A8694D4B7AE3BF6DBDCCE",
+            "edge_name": "member",
+            "created_date": "2021-01-08T15:29:00.000",
+            "creator": "dao.hypha",
+            "contract": "dao.hypha"
+        }
+    },
+    "irreversible": false
+}
+Queueing edge creation
+{
+    "type": "delta",
+    "mode": "history",
+    "content": {
+        "code": "dao.hypha",
+        "scope": "dao.hypha",
+        "table": "edges",
+        "primary_key": "1986719737",
+        "payer": "dao.hypha",
+        "@timestamp": "2021-01-08T15:29:00.000",
+        "present": false,
+        "block_num": 87433918,
+        "block_id": "053622be0c9889a6b2370021087d12c9938d3ec6a3a0c6bc21e2429fa42e2cd9",
+        "data": {
+            "id": "1986719737",
+            "from_node_edge_name_index": "2702545146",
+            "from_node_to_node_index": "3649393806",
+            "to_node_edge_name_index": "1090092226",
+            "from_node": "52A7FF82BD6F53B31285E97D6806D886EEFB650E79754784E9D923D3DF347C91",
+            "to_node": "D66E7C0B1BCE8B23957A25BD1691BB387D70BB7C9E1A8694D4B7AE3BF6DBDCCE",
+            "edge_name": "applicant",
+            "created_date": "2021-01-08T15:28:58.500",
+            "creator": "mem5.hypha",
+            "contract": "dao.hypha"
+        }
+    },
+    "irreversible": false
+}
+Deleting edge: applicant between from:<0xf832>52A7FF82BD6F53B31285E97D6806D886EEFB650E79754784E9D923D3DF347C91 to: <0x20ecd>D66E7C0B1BCE8B23957A25BD1691BB387D70BB7C9E1A8694D4B7AE3BF6DBDCCE
+{
+    "type": "delta",
+    "mode": "history",
+    "content": {
+        "code": "dao.hypha",
+        "scope": "dao.hypha",
+        "table": "edges",
+        "primary_key": "758354521",
+        "payer": "dao.hypha",
+        "@timestamp": "2021-01-08T15:29:55.000",
+        "present": true,
+        "block_num": 87434028,
+        "block_id": "0536232c9657421288a39176bb7500cd8182da82f2e3022d1e3398cb4bdd7e34",
+        "data": {
+            "id": "758354521",
+            "from_node_edge_name_index": "436962768",
+            "from_node_to_node_index": "1392235386",
+            "to_node_edge_name_index": "722459890",
+            "from_node": "D6838AD8342E587F77AF2C179EAC89A19DD719B42FEC76AB7489F8EC3266EF01",
+            "to_node": "52A7FF82BD6F53B31285E97D6806D886EEFB650E79754784E9D923D3DF347C91",
+            "edge_name": "applicantof",
+            "created_date": "2021-01-08T15:29:55.000",
+            "creator": "johnnyhypha1",
+            "contract": "dao.hypha"
+        }
+    },
+    "irreversible": false
+}
+Adding edge: memberof between from:<0x20ecd>D66E7C0B1BCE8B23957A25BD1691BB387D70BB7C9E1A8694D4B7AE3BF6DBDCCE to: <0xf832>52A7FF82BD6F53B31285E97D6806D886EEFB650E79754784E9D923D3DF347C91
+Adding edge: member between from:<0xf832>52A7FF82BD6F53B31285E97D6806D886EEFB650E79754784E9D923D3DF347C91 to: <0x20ecd>D66E7C0B1BCE8B23957A25BD1691BB387D70BB7C9E1A8694D4B7AE3BF6DBDCCE
+Queueing edge creation
+{
+    "type": "delta",
+    "mode": "history",
+    "content": {
+        "code": "dao.hypha",
+        "scope": "dao.hypha",
+        "table": "edges",
+        "primary_key": "3741105352",
+        "payer": "dao.hypha",
+        "@timestamp": "2021-01-08T15:29:55.000",
+        "present": true,
+        "block_num": 87434028,
+        "block_id": "0536232c9657421288a39176bb7500cd8182da82f2e3022d1e3398cb4bdd7e34",
+        "data": {
+            "id": "3741105352",
+            "from_node_edge_name_index": "2702545146",
+            "from_node_to_node_index": "3934568978",
+            "to_node_edge_name_index": "226844310",
+            "from_node": "52A7FF82BD6F53B31285E97D6806D886EEFB650E79754784E9D923D3DF347C91",
+            "to_node": "D6838AD8342E587F77AF2C179EAC89A19DD719B42FEC76AB7489F8EC3266EF01",
+            "edge_name": "applicant",
+            "created_date": "2021-01-08T15:29:55.000",
+            "creator": "johnnyhypha1",
+            "contract": "dao.hypha"
+        }
+    },
+    "irreversible": false
+}
+Queueing edge creation
+{
+    "type": "delta",
+    "mode": "history",
+    "content": {
+        "code": "dao.hypha",
+        "scope": "dao.hypha",
+        "table": "documents",
+        "primary_key": "4956",
+        "payer": "dao.hypha",
+        "@timestamp": "2021-01-08T15:29:55.000",
+        "present": true,
+        "block_num": 87434028,
+        "block_id": "0536232c9657421288a39176bb7500cd8182da82f2e3022d1e3398cb4bdd7e34",
+        "data": {
+            "id": "4956",
+            "hash": "D6838AD8342E587F77AF2C179EAC89A19DD719B42FEC76AB7489F8EC3266EF01",
+            "creator": "dao.hypha",
+            "content_groups": [
+                [
+                    {
+                        "label": "content_group_label",
+                        "value": [
+                            "string",
+                            "details"
+                        ]
+                    },
+                    {
+                        "label": "member",
+                        "value": [
+                            "name",
+                            "johnnyhypha1"
+                        ]
+                    }
+                ],
+                [
+                    {
+                        "label": "content_group_label",
+                        "value": [
+                            "string",
+                            "system"
+                        ]
+                    },
+                    {
+                        "label": "type",
+                        "value": [
+                            "name",
+                            "member"
+                        ]
+                    },
+                    {
+                        "label": "node_label",
+                        "value": [
+                            "string",
+                            "johnnyhypha1"
+                        ]
+                    }
+                ]
+            ],
+            "certificates": [],
+            "created_date": "2021-01-08T15:29:55.000",
+            "contract": "dao.hypha"
+        }
+    },
+    "irreversible": false
+}
+Creating doc: D6838AD8342E587F77AF2C179EAC89A19DD719B42FEC76AB7489F8EC3266EF01
+{
+    "type": "delta",
+    "mode": "history",
+    "content": {
+        "code": "dao.hypha",
+        "scope": "dao.hypha",
+        "table": "edges",
+        "primary_key": "2355503289",
+        "payer": "dao.hypha",
+        "@timestamp": "2021-01-08T15:30:17.500",
+        "present": true,
+        "block_num": 87434073,
+        "block_id": "053623593c4c5a0cd30c2dad01cfe67c7597cd98419e0ea45728e0a114c48129",
+        "data": {
+            "id": "2355503289",
+            "from_node_edge_name_index": "4239658784",
+            "from_node_to_node_index": "3934568978",
+            "to_node_edge_name_index": "1088194618",
+            "from_node": "52A7FF82BD6F53B31285E97D6806D886EEFB650E79754784E9D923D3DF347C91",
+            "to_node": "D6838AD8342E587F77AF2C179EAC89A19DD719B42FEC76AB7489F8EC3266EF01",
+            "edge_name": "member",
+            "created_date": "2021-01-08T15:30:17.500",
+            "creator": "dao.hypha",
+            "contract": "dao.hypha"
+        }
+    },
+    "irreversible": false
+}
+Adding edge: applicantof between from:<0x20ed0>D6838AD8342E587F77AF2C179EAC89A19DD719B42FEC76AB7489F8EC3266EF01 to: <0xf832>52A7FF82BD6F53B31285E97D6806D886EEFB650E79754784E9D923D3DF347C91
+Adding edge: applicant between from:<0xf832>52A7FF82BD6F53B31285E97D6806D886EEFB650E79754784E9D923D3DF347C91 to: <0x20ed0>D6838AD8342E587F77AF2C179EAC89A19DD719B42FEC76AB7489F8EC3266EF01
+Queueing edge creation
+{
+    "type": "delta",
+    "mode": "history",
+    "content": {
+        "code": "dao.hypha",
+        "scope": "dao.hypha",
+        "table": "edges",
+        "primary_key": "2465811358",
+        "payer": "dao.hypha",
+        "@timestamp": "2021-01-08T15:30:17.500",
+        "present": true,
+        "block_num": 87434073,
+        "block_id": "053623593c4c5a0cd30c2dad01cfe67c7597cd98419e0ea45728e0a114c48129",
+        "data": {
+            "id": "2465811358",
+            "from_node_edge_name_index": "2419604414",
+            "from_node_to_node_index": "1392235386",
+            "to_node_edge_name_index": "384948904",
+            "from_node": "D6838AD8342E587F77AF2C179EAC89A19DD719B42FEC76AB7489F8EC3266EF01",
+            "to_node": "52A7FF82BD6F53B31285E97D6806D886EEFB650E79754784E9D923D3DF347C91",
+            "edge_name": "memberof",
+            "created_date": "2021-01-08T15:30:17.500",
+            "creator": "dao.hypha",
+            "contract": "dao.hypha"
+        }
+    },
+    "irreversible": false
+}
+Queueing edge creation
+{
+    "type": "delta",
+    "mode": "history",
+    "content": {
+        "code": "dao.hypha",
+        "scope": "dao.hypha",
+        "table": "edges",
+        "primary_key": "3741105352",
+        "payer": "dao.hypha",
+        "@timestamp": "2021-01-08T15:30:17.500",
+        "present": false,
+        "block_num": 87434073,
+        "block_id": "053623593c4c5a0cd30c2dad01cfe67c7597cd98419e0ea45728e0a114c48129",
+        "data": {
+            "id": "3741105352",
+            "from_node_edge_name_index": "2702545146",
+            "from_node_to_node_index": "3934568978",
+            "to_node_edge_name_index": "226844310",
+            "from_node": "52A7FF82BD6F53B31285E97D6806D886EEFB650E79754784E9D923D3DF347C91",
+            "to_node": "D6838AD8342E587F77AF2C179EAC89A19DD719B42FEC76AB7489F8EC3266EF01",
+            "edge_name": "applicant",
+            "created_date": "2021-01-08T15:29:55.000",
+            "creator": "johnnyhypha1",
+            "contract": "dao.hypha"
+        }
+    },
+    "irreversible": false
+}
+Deleting edge: applicant between from:<0xf832>52A7FF82BD6F53B31285E97D6806D886EEFB650E79754784E9D923D3DF347C91 to: <0x20ed0>D6838AD8342E587F77AF2C179EAC89A19DD719B42FEC76AB7489F8EC3266EF01
+{
+    "type": "delta",
+    "mode": "history",
+    "content": {
+        "code": "dao.hypha",
+        "scope": "dao.hypha",
+        "table": "edges",
+        "primary_key": "758354521",
+        "payer": "dao.hypha",
+        "@timestamp": "2021-01-08T15:30:17.500",
+        "present": false,
+        "block_num": 87434073,
+        "block_id": "053623593c4c5a0cd30c2dad01cfe67c7597cd98419e0ea45728e0a114c48129",
+        "data": {
+            "id": "758354521",
+            "from_node_edge_name_index": "436962768",
+            "from_node_to_node_index": "1392235386",
+            "to_node_edge_name_index": "722459890",
+            "from_node": "D6838AD8342E587F77AF2C179EAC89A19DD719B42FEC76AB7489F8EC3266EF01",
+            "to_node": "52A7FF82BD6F53B31285E97D6806D886EEFB650E79754784E9D923D3DF347C91",
+            "edge_name": "applicantof",
+            "created_date": "2021-01-08T15:29:55.000",
+            "creator": "johnnyhypha1",
+            "contract": "dao.hypha"
+        }
+    },
+    "irreversible": false
+}
+Deleting edge: applicantof between from:<0x20ed0>D6838AD8342E587F77AF2C179EAC89A19DD719B42FEC76AB7489F8EC3266EF01 to: <0xf832>52A7FF82BD6F53B31285E97D6806D886EEFB650E79754784E9D923D3DF347C91
