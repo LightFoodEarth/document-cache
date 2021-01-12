@@ -11,22 +11,33 @@ on:
 jobs:
   deploy:
     runs-on: ubuntu-latest
-    steps:      
+    steps:
+      - name: Set docker-image-name to testnet
+        if: endsWith(github.ref, '/dev')
+        run: |
+          echo "::set-env name=DOCKER_IMAGE_NAME::document-cache-testnet"
+      - name: Set docker-image-name to testnet2
+        if: endsWith(github.ref, '/dev2')
+        run: |
+          echo "::set-env name=DOCKER_IMAGE_NAME::document-cache-testnet2"
+      - name: Set docker-image-name to instrumentation
+        if: endsWith(github.ref, '/feature/add-instrumentation')
+        run: |
+          echo "::set-env name=DOCKER_IMAGE_NAME::document-cache-instrumentation"
+      - name: Set docker-image-name to mainnet
+        if: endsWith(github.ref, '/master')
+        run: |
+          echo "::set-env name=DOCKER_IMAGE_NAME::document-cache-mainnet"
       - uses: actions/checkout@v2
-      - name: Set output
-        id: vars
-        run: echo ::set-output name=short_ref::${GITHUB_REF#refs/*/}
-      - name: Check output
-        run: echo ${{ github.head_ref }}
       - name: Docker login
         run: docker login -u ${{ secrets.DOCKER_HUB_USER }} -p ${{ secrets.DOCKER_HUB_PASSWORD }}
       - name: Build
-        run: docker build -t document-cache-${{ github.head_ref }} .
+        run: docker build -t $DOCKER_IMAGE_NAME .
       - name: Tags
         run: |
-          docker tag document-cache-${{ github.head_ref }} ${{ secrets.DOCKER_HUB_USER }}/document-cache-${{ github.head_ref }}:${{ github.sha }}
-          docker tag document-cache-${{ github.head_ref }} ${{ secrets.DOCKER_HUB_USER }}/document-cache-${{ github.head_ref }}:latest
+          docker tag $DOCKER_IMAGE_NAME ${{ secrets.DOCKER_HUB_USER }}/$DOCKER_IMAGE_NAME:${{ github.sha }}
+          docker tag $DOCKER_IMAGE_NAME ${{ secrets.DOCKER_HUB_USER }}/$DOCKER_IMAGE_NAME:latest
       - name: Push
         run: |
-          # docker push ${{ secrets.DOCKER_HUB_USER }}/document-cache-${{ github.head_ref }}:${{ github.sha }}
-          docker push ${{ secrets.DOCKER_HUB_USER }}/document-cache-${{ github.head_ref }}:latest
+          docker push ${{ secrets.DOCKER_HUB_USER }}/$DOCKER_IMAGE_NAME:${{ github.sha }}
+          docker push ${{ secrets.DOCKER_HUB_USER }}/$DOCKER_IMAGE_NAME:latest
