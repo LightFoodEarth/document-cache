@@ -11,7 +11,7 @@ services:
     volumes:
       - /var/run/docker.sock:/var/run/docker.sock
   doc-cache:
-    image: hyphagroup/${DOCKER_IMAGE_NAME}:latest
+    image: sebastianmontero/${DOCKER_IMAGE_NAME}:latest
     volumes:
       - ./data:${DATA_PATH}
     labels:
