@@ -27,6 +27,8 @@ services:
     command: dgraph-ratel
   doc-cache:
     command: node src/start.js
+    ports:
+      - ${PROMETHEUS_PORT}:${PROMETHEUS_PORT}
     environment:
       - BLOCK_END_TIMEOUT
       - CONTRACT_NAME
@@ -38,6 +40,7 @@ services:
       - START_FROM
       - DATA_PATH
       - STORE_NAME
+      - PROMETHEUS_PORT
     depends_on:
       - zero
       - alpha

@@ -1,9 +1,10 @@
+const expressApp = require('express')()
 const path = require('path')
 const Store = require('data-store')
 const fetch = require('node-fetch')
 const HyperionSocketClient = require('@eosrio/hyperion-stream-client').default
 const { Document } = require('./model')
-const { DGraph, Lock } = require('./service')
+const { DGraph, Lock, Prometheus } = require('./service')
 
 const {
   BLOCK_END_TIMEOUT,
@@ -15,7 +16,8 @@ const {
   DGRAPH_ALPHA_EXTERNAL_PORT,
   START_FROM,
   DATA_PATH,
-  STORE_NAME
+  STORE_NAME,
+  PROMETHEUS_PORT
 } = process.env
 
 let lastProcessedBlock = null
@@ -23,6 +25,7 @@ let docDeletes = []
 let edgeCreates = []
 let currentBlock = null
 let blockEndTimer = null
+let expressServer = null
 
 const store = new Store({
   path: path.join(DATA_PATH, STORE_NAME)
@@ -36,6 +39,8 @@ async function run () {
   const dgraph = new DGraph({ addr })
   const document = new Document(dgraph)
   const lock = new Lock()
+  const prometheus = new Prometheus()
+  setupExpress(prometheus)
 
   await document.prepareSchema()
 
@@ -55,9 +60,11 @@ async function run () {
 
   const processQueuedOps = async () => {
     for (const docDelete of docDeletes) {
+      prometheus.deleteDocument()
       await document.mutateDocument(docDelete, true)
     }
     for (const edgeCreate of edgeCreates) {
+      prometheus.createEdge()
       await document.mutateEdge(edgeCreate, false)
     }
     docDeletes = []
@@ -82,22 +89,27 @@ async function run () {
       if (!currentBlock || currentBlock !== blockNum) {
         console.log('Processing queued ops due to NEW BLOCK')
         await processQueuedOps()
+        prometheus.blockNumber(blockNum)
         currentBlock = blockNum
       }
       // console.log(JSON.stringify(doc, null, 4))
       if (data) {
         if (table === DOC_TABLE_NAME) {
           if (present) {
+            prometheus.createDocument()
             await document.mutateDocument(data, false)
           } else {
             console.log('Queueing document delete')
+            prometheus.queueDocumentDeletion()
             docDeletes.push(data)
           }
         } else if (table === EDGE_TABLE_NAME) {
           if (present) {
             console.log('Queueing edge creation')
+            prometheus.queueEdgeCreation()
             edgeCreates.push(data)
           } else {
+            prometheus.deleteEdge()
             await document.mutateEdge(data, true)
           }
         }
@@ -113,6 +125,8 @@ async function run () {
           }
         }, BLOCK_END_TIMEOUT)
       }
+    } catch (error) {
+      console.log('Error: ', error)
     } finally {
       lock.release()
       ack()
@@ -121,6 +135,31 @@ async function run () {
 
   client.connect(() => {
     console.log('Connected to: ', EOS_ENDPOINT)
+  })
+}
+
+function setupExpress (prometheus) {
+  expressApp.get('/metrics', async (req, res) => {
+    res.set('Content-Type', prometheus.contentType())
+    res.end(await prometheus.metrics())
+  })
+
+  expressApp.use((err, req, res, next) => {
+    res.statusCode = 500
+    res.json({ error: err.message })
+    next()
+  })
+
+  expressServer = expressApp.listen(PROMETHEUS_PORT, () => {
+    console.log(`prometheus endpoint listening on port ${PROMETHEUS_PORT}`)
+  })
+}
+
+function shutdownExpress () {
+  expressServer.close((err) => {
+    if (err) {
+      console.error(err)
+    }
   })
 }
 
@@ -135,12 +174,14 @@ function saveLastProcessedBlock () {
 function failureHandler (error) {
   console.log('Doc Listener failed:', error)
   saveLastProcessedBlock()
+  shutdownExpress()
   process.exit(1)
 }
 
 function terminateHandler () {
   console.log('Terminating doc listener...')
   saveLastProcessedBlock()
+  shutdownExpress()
   process.exit(1)
 }
 
