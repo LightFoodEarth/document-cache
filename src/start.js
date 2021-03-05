@@ -6,6 +6,8 @@ const HyperionSocketClient = require('@eosrio/hyperion-stream-client').default
 const { Document } = require('./model')
 const { DGraph, Lock, Prometheus } = require('./service')
 
+require('dotenv').config()
+
 const {
   BLOCK_END_TIMEOUT,
   CONTRACT_NAME,
